@@ -1,4 +1,3 @@
-// Still Incomplete
 //Longest Common Sub-sequence  (LCS)
 
 #include<iostream.h>
@@ -21,28 +20,28 @@ void LCS(char *x, char *y){
   for(int j=0; j<n+1; j++)   // j==1 probably
   {
     c[0][j] = '0';
-    b[i][0] = ' ';
+    b[0][j] = ' ';
   }
 
   for(i=1; i<m+1; i++)
     for(j=1; j<n+1; j++)
     {
-      if(x[i] == y[j]){
+      if(x[i-1] == y[j-1]){
 	c[i][j]=c[i-1][j-1] + 1;
-	//b[i][j] = 'Y';
+	b[i][j] = '\\';
       }
       else if(c[i-1][j] >= c[i][j-1]){
 	c[i][j]=c[i-1][j];
-	//b[i][j] = 'I';
+	b[i][j] = '|';
       }
       else{
 	c[i][j]=c[i][j-1];
-	//b[i][j] = 'L';
+	b[i][j] = '-';
       }
     }
   for (i = 0; i < m+1; i++) {
     for (j = 0; j < m+1; j++) {
-      cout<<c[i][j]<<"  ";
+      cout<<c[i][j]<<b[i][j]<<"  ";
     }
     cout<<endl;
   }
