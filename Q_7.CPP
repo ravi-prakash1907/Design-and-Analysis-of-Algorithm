@@ -4,7 +4,7 @@
 #include<iostream.h>
 #include<conio.h>
 
-int graph[20][3], rows=-1, index = 0;
+int graph[20][2], rows=-1, index = 0;
 
 
 ///////////////////////////////////
@@ -56,24 +56,15 @@ class queue
     if(head != '\0')
     {
        temp = head->info;
-	   head = head->next;
+	     head = head->next;
        return temp;
     }
     else
-	return -1;
+	     return -1;
   }
-  int find(int x)
-  {
-    for(node *i = head; i != '\0'; i=i->next)
-      if(i->info == x)
-	return 1;
-    return 0;
-  }
-
 } Q;
 
 ///////////////////////////////////
-
 
 void printGraph()
 {
@@ -114,7 +105,7 @@ void drawGraph(int x, int i, int limit)
 	cout<<"\n\nEnter neighbour("<<j-i+1<<") of \'"<<x<<"\': ";
 	cin>>graph[j][1];
 
-	if(checkPeresence(graph[j][1], rows, 0) == 0)  //not present
+	if(checkPeresence(graph[j][1], rows, 0) == 0)
 	  drawGraph(graph[j][1], rows, limit);
       }
     }
@@ -130,20 +121,19 @@ void fill(int x)
 void BFS()
 {
   while ((index < rows) && (Q.giveHead() == graph[index][0])) {
-    if(checkPeresence(graph[index][1], index, 1) == 0)  //not present
+    if(checkPeresence(graph[index][1], index, 1) == 0)
       fill(graph[index][1]);
     index++;
   }
   if(index < rows)
   {
     do {
-      if (Q.dequeue() == -1)
-	return;
+         if (Q.dequeue() == -1)
+	         return;
     } while(Q.giveHead() != graph[index][0]);
 
     BFS();
   }
-
   return;
 }
 
@@ -158,17 +148,15 @@ void main()
     cout<<"Enter the starting node: ";
     cin>>start;
 
-
     clrscr();
     cout<<"Enter the starting node: ";
     drawGraph(start, 0, t-1);
     printGraph();
 
     getch();
-
-    cout<<"--------------\n\n"
-	<<"Output of Breadth First Search (BFS) for this graph:"
-	<<"\n\n";
+    cout<<"-------------------\n\n"
+	      <<"Output of Breadth First Search (BFS) for this graph:"
+	      <<"\n\n";
     fill(start);
     BFS();
 
