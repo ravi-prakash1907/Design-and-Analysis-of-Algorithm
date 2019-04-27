@@ -13,17 +13,14 @@ void display(int *a, int size) {
 int insertionSort(int *a, int n)
 {
   int i, j, k, comperision = 0;
-  for(i=0; i<n; i++)
+  for(i=1; i<n; i++)
   {
     comperision++;
     k = a[i];
-    for(j=i-1; j>=0; j--)
+    for(j=i-1; (a[j]>k) && (j>=0); j--)
     {
-      if(a[j]>k)
-      {
         comperision += 2;
         a[j+1] = a[j];
-      }
     }
     a[j+1] = k;
   }
