@@ -39,7 +39,7 @@ class stack
     if(top != '\0')
       top = new node(val, top);
     else
-      top = tail = new node(val);
+      top = new node(val);
   }
 
   void pop()
